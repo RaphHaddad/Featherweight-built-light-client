@@ -20,6 +20,11 @@ namespace VstsBuildLightClient
             Console.ResetColor();
         }
 
+        internal override void TurnOff()
+        {
+            Console.Clear();
+        }
+
         internal override void ChangeColourToRed()
         {
             Console.BackgroundColor = ConsoleColor.Red;

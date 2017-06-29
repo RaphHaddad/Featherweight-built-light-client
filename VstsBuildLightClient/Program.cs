@@ -13,8 +13,13 @@ namespace VstsBuildLightClient
         static void Main(string[] args)
         {
             var config = new VstsConfiguration();
+            var buildLight = BuildLight.Initialise(config.BuildLight);
+
+            buildLight.TurnOff();
+
             var uri = new Uri(config.Url);
             var client = new VssConnection(uri, new VssBasicCredential(string.Empty, config.PersonalKey));
+
 
             client.ConnectAsync()
                   .SyncResult();
@@ -23,30 +28,35 @@ namespace VstsBuildLightClient
             var project = projectClient.GetProjects().Result
                                                      .Single(x => x.Name == config.Project);
 
-            var buildLight = BuildLight.Initialise(config.BuildLight);
-
-            while (true)
+            try
             {
-                var lastBuildResult = buildClient.GetBuildsAsync(project.Id)
-                                                 .Result
-                                                 .OrderBy(x => x.FinishTime)
-                                                 .Last()
-                                                 .Result;
-
-
-                switch (lastBuildResult)
+                while (true)
                 {
-                    case BuildResult.Succeeded:
-                        buildLight.ChangeColourToGreen();
-                        break;
-                    case BuildResult.PartiallySucceeded:
-                        buildLight.ChangeColourToAmber();
-                        break;
-                    default:
-                        buildLight.ChangeColourToRed();
-                        break;
+                    var lastBuildResult = buildClient.GetBuildsAsync(project.Id)
+                        .Result
+                        .OrderBy(x => x.FinishTime)
+                        .Last()
+                        .Result;
+
+
+                    switch (lastBuildResult)
+                    {
+                        case BuildResult.Succeeded:
+                            buildLight.ChangeColourToGreen();
+                            break;
+                        case BuildResult.PartiallySucceeded:
+                            buildLight.ChangeColourToAmber();
+                            break;
+                        default:
+                            buildLight.ChangeColourToRed();
+                            break;
+                    }
+                    Thread.Sleep(2000);
                 }
-                Thread.Sleep(2000);
+            }
+            catch (Exception)
+            {
+                buildLight.TurnOff();
             }
         }
 
