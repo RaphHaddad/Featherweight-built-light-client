@@ -9,9 +9,12 @@ namespace VstsBuildLightClient
 
         internal static BuildLight Initialise(VstsConfiguration.BuildLights buildLight)
         {
-            if (buildLight == VstsConfiguration.BuildLights.Console)
+            switch (buildLight)
             {
-                return new ConsoleBuildLight();
+                case VstsConfiguration.BuildLights.Console:
+                    return new ConsoleBuildLight();
+                case VstsConfiguration.BuildLights.Delcom:
+                    return new DelcomBuildLight();
             }
             return null;
         }
