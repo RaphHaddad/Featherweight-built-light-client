@@ -5,4 +5,4 @@ This is a featherweight buildlight client, it shouldn't take more than a few min
 3. put the personal access token in the appsettings.json.
 4. specify what build light you want on the appsettings.json file. Currently support
    1. "console"
-   2. "delcom" (coming soon)
+   2. "delcom" (coming soon - already implemented on branch 'delcom-support' I just need to test it)
