@@ -4,33 +4,31 @@ namespace VstsBuildLightClient
 {
     internal class ConsoleBuildLight : BuildLight
     {
+        private static void ChangeColour(ConsoleColor color)
+        {
+            Console.BackgroundColor = color;
+            Console.Clear();
+            Console.WriteLine();
+        }
         internal override void ChangeColourToGreen()
         {
-            Console.BackgroundColor = ConsoleColor.Green;
-            Console.ForegroundColor = ConsoleColor.White;
-            Console.WriteLine("Build is good");
-            Console.ResetColor();
+            ChangeColour(ConsoleColor.Green);
         }
 
         internal override void ChangeColourToAmber()
         {
-            Console.BackgroundColor = ConsoleColor.Yellow;
-            Console.ForegroundColor = ConsoleColor.White;
-            Console.WriteLine("Build is partially successful");
-            Console.ResetColor();
+            ChangeColour(ConsoleColor.Yellow);
         }
 
         internal override void TurnOff()
         {
+            Console.ResetColor();
             Console.Clear();
         }
 
         internal override void ChangeColourToRed()
         {
-            Console.BackgroundColor = ConsoleColor.Red;
-            Console.ForegroundColor = ConsoleColor.White;
-            Console.WriteLine("Build has failed");
-            Console.ResetColor();
+            ChangeColour(ConsoleColor.Red);
         }
     }
 }
