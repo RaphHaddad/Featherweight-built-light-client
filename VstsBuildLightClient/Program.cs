@@ -12,13 +12,12 @@ namespace VstsBuildLightClient
     {
         static void Main(string[] args)
         {
-            var config = new VstsConfiguration();
-            var buildLight = BuildLight.Initialise(config.BuildLight);
+            var buildLight = BuildLight.Initialise();
 
             buildLight.TurnOff();
 
-            var uri = new Uri(config.Url);
-            var client = new VssConnection(uri, new VssBasicCredential(string.Empty, config.PersonalKey));
+            var uri = new Uri(VstsConfiguration.Url);
+            var client = new VssConnection(uri, new VssBasicCredential(string.Empty, VstsConfiguration.PersonalKey));
 
 
             client.ConnectAsync()
@@ -26,7 +25,7 @@ namespace VstsBuildLightClient
             var buildClient = client.GetClient<BuildHttpClient>();
             var projectClient = client.GetClient<ProjectHttpClient>();
             var project = projectClient.GetProjects().Result
-                                                     .Single(x => x.Name == config.Project);
+                                                     .Single(x => x.Name == VstsConfiguration.Project);
 
             try
             {

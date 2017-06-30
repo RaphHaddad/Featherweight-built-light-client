@@ -7,14 +7,16 @@ namespace VstsBuildLightClient
         internal abstract void ChangeColourToAmber();
         internal abstract void TurnOff();
 
-        internal static BuildLight Initialise(VstsConfiguration.BuildLights buildLight)
+        internal static BuildLight Initialise()
         {
-            switch (buildLight)
+            switch (VstsConfiguration.BuildLight)
             {
                 case VstsConfiguration.BuildLights.Console:
                     return new ConsoleBuildLight();
                 case VstsConfiguration.BuildLights.Delcom:
                     return new DelcomBuildLight();
+                case VstsConfiguration.BuildLights.PhilipsHue:
+                    return new PhilipsHueBuildLight();
             }
             return null;
         }
