@@ -9,6 +9,7 @@
     <PackageReference Include="Microsoft.Extensions.Configuration" Version="1.1.2" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="1.1.2" />
     <PackageReference Include="Microsoft.TeamFoundationServer.Client" Version="15.112.1" />
+    <PackageReference Include="Q42.HueApi" Version="3.4.3" />
     <PackageReference Include="System.Net.Http" Version="4.3.2" />
   </ItemGroup>
 
