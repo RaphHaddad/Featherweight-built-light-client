@@ -17,19 +17,22 @@ namespace VstsBuildLightClient
         }
         internal override void ChangeColourToRed()
         {
-            var command = new LightCommand().TurnOn().SetColor(0.6679, 0.3181);
-            _client.SendCommandAsync(command);
+            ChangeColour(0.6679, 0.3181);
         }
 
         internal override void ChangeColourToGreen()
         {
-            var command = new LightCommand().TurnOn().SetColor(0.41, 0.51721);
-            _client.SendCommandAsync(command);
+            ChangeColour(0.41, 0.51721);
         }
 
         internal override void ChangeColourToAmber()
         {
-            var command = new LightCommand().TurnOn().SetColor(0.5425, 0.4196);
+            ChangeColour(0.5425, 0.4196);
+        }
+
+        private void ChangeColour(double x, double y)
+        {
+            var command = new LightCommand().TurnOn().SetColor(x, y);
             _client.SendCommandAsync(command);
         }
 
