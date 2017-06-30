@@ -13,7 +13,7 @@ namespace VstsBuildLightClient
             var locator = new HttpBridgeLocator();
             var lightIp = locator.LocateBridgesAsync(new TimeSpan(0, 0, 5)).Result.First();
             _client = new LocalHueClient(lightIp.IpAddress);
-            _client.RegisterAsync("FeatherWeightBuildClient", "get the device name from here").Wait();
+            _client.RegisterAsync("FeatherWeightBuildClient", AppConfiguration.DeviceSettings.Name).Wait();
         }
         internal override void ChangeColourToRed()
         {

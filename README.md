@@ -6,3 +6,4 @@ This is a featherweight buildlight client, it shouldn't take more than a few min
 4. specify what build light you want on the appsettings.json file. Currently support
    1. "console"
    2. "delcom" (coming soon - already implemented but not tested as I didn't have a light)
+   3. "hue" (coming soon, you will need to modify the value for device_name here, still untested as I didn't have a light)

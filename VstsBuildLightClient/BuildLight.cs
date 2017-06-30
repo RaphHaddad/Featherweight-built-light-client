@@ -9,13 +9,13 @@ namespace VstsBuildLightClient
 
         internal static BuildLight Initialise()
         {
-            switch (VstsConfiguration.BuildLight)
+            switch (AppConfiguration.BuildLight)
             {
-                case VstsConfiguration.BuildLights.Console:
+                case AppConfiguration.BuildLights.Console:
                     return new ConsoleBuildLight();
-                case VstsConfiguration.BuildLights.Delcom:
+                case AppConfiguration.BuildLights.Delcom:
                     return new DelcomBuildLight();
-                case VstsConfiguration.BuildLights.PhilipsHue:
+                case AppConfiguration.BuildLights.PhilipsHue:
                     return new PhilipsHueBuildLight();
             }
             return null;

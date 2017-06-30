@@ -4,9 +4,9 @@ using Microsoft.Extensions.Configuration;
 
 namespace VstsBuildLightClient
 {
-    internal static class VstsConfiguration
+    internal static class AppConfiguration
     {
-        static VstsConfiguration()
+        static AppConfiguration()
         {
             var builder = new ConfigurationBuilder()
                 .SetBasePath(Directory.GetCurrentDirectory())
