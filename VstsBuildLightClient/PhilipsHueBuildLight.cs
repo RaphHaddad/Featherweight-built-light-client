@@ -11,7 +11,11 @@ namespace VstsBuildLightClient
         public PhilipsHueBuildLight()
         {
             var locator = new HttpBridgeLocator();
-            var lightIp = locator.LocateBridgesAsync(new TimeSpan(0, 0, 5)).Result.First();
+            var lightIp = locator.LocateBridgesAsync(new TimeSpan(0, 0, 5)).Result?.FirstOrDefault();
+            if (lightIp == null)
+            {
+                throw new ArgumentException("Can't find Hue build light on network");
+            }
             _client = new LocalHueClient(lightIp.IpAddress);
             _client.RegisterAsync("FeatherWeightBuildClient", AppConfiguration.DeviceSettings.Name).Wait();
         }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Net;
 using System.Threading;
 using Microsoft.TeamFoundation.Build.WebApi;
 using Microsoft.TeamFoundation.Core.WebApi;
@@ -20,8 +21,17 @@ namespace VstsBuildLightClient
             var client = new VssConnection(uri, new VssBasicCredential(string.Empty, AppConfiguration.PersonalKey));
 
 
-            client.ConnectAsync()
-                  .SyncResult();
+            try
+            {
+                client.ConnectAsync()
+                      .SyncResult();
+            }
+            catch (WebException)
+            {
+                Console.WriteLine("could not connect to the Vsts or TFS isntance");
+                return;
+            }
+            
             var buildClient = client.GetClient<BuildHttpClient>();
             var projectClient = client.GetClient<ProjectHttpClient>();
             var project = projectClient.GetProjects().Result
@@ -55,6 +65,7 @@ namespace VstsBuildLightClient
             }
             catch (Exception)
             {
+                Console.WriteLine("error occured while trying to get latest build and change build light");
                 buildLight.TurnOff();
             }
         }
