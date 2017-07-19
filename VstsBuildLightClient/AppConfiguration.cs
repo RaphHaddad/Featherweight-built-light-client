@@ -31,6 +31,10 @@ namespace VstsBuildLightClient
                 BuildLight = BuildLights.PhilipsHue;
                 DeviceSettings.Name = config["build_light_settings:device_name"];
             }
+            else if (buildLight.Equals("kuando", StringComparison.InvariantCultureIgnoreCase))
+            {
+                BuildLight = BuildLights.Kuando;
+            }
             else
             {
                 throw new ArgumentException($"{buildLight} is not a valid Build Light value in settings");
@@ -46,7 +50,7 @@ namespace VstsBuildLightClient
         {
             Console,
             Delcom,
-            Kuanda,
+            Kuando,
             PhilipsHue
         }
 

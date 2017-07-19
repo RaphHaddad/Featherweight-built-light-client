@@ -13,4 +13,10 @@
     <PackageReference Include="System.Net.Http" Version="4.3.2" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Reference Include="BusylightSDK">
+      <HintPath>KuandoDrivers\BusylightSDK.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
 </Project>

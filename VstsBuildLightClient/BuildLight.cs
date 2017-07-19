@@ -17,6 +17,8 @@ namespace VstsBuildLightClient
                     return new DelcomBuildLight();
                 case AppConfiguration.BuildLights.PhilipsHue:
                     return new PhilipsHueBuildLight();
+                case AppConfiguration.BuildLights.Kuando:
+                    return new KuandoBuildLight();
             }
             return null;
         }

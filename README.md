@@ -7,3 +7,4 @@ This is a featherweight buildlight client, it shouldn't take more than a few min
    1. "console"
    2. "delcom" (coming soon - already implemented but not tested as I didn't have a light)
    3. "hue" (coming soon, you will need to modify the value for device_name here, still untested as I didn't have a light)
+   4. "kuando" supports the kuando omega light (coming soon - already implemented but not tested as I didn't have a light)
