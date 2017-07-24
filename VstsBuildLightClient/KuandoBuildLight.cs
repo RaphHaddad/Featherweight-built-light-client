@@ -32,7 +32,7 @@ namespace VstsBuildLightClient
 
         internal override void TurnOff()
         {
-            _busylight.Terminate();
+            _busylight.Light(BusylightColor.Off);
         }
     }
 }
