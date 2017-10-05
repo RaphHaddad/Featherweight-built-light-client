@@ -41,7 +41,7 @@ namespace VstsBuildLightClient
             {
                 while (true)
                 {
-                    var lastBuildResult = buildClient.GetBuildsAsync(project.Id)
+                    var lastBuildResult = buildClient.GetBuildsAsync(project.Id, AppConfiguration.BuildDefinitions)
                         .Result
                         .OrderBy(x => x.FinishTime)
                         .Last()

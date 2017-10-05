@@ -1,5 +1,7 @@
 using System;
+using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using Microsoft.Extensions.Configuration;
 
 namespace VstsBuildLightClient
@@ -16,6 +18,8 @@ namespace VstsBuildLightClient
             Url = config["vsts_url"];
             PersonalKey = config["vsts_ personal_key"];
             Project = config["vsts_project"];
+            BuildDefinitions = config.GetSection("builds_definitions").GetChildren()
+                                                                      .Select(x => int.Parse(x.Value));
             var buildLight = config["build_light"];
 
             if (buildLight.Equals("console", StringComparison.InvariantCultureIgnoreCase))
@@ -45,6 +49,7 @@ namespace VstsBuildLightClient
         internal static string PersonalKey { get; }
         internal static string Project { get; }
         internal static BuildLights BuildLight { get; }
+        internal static IEnumerable<int> BuildDefinitions { get;  }
 
         internal enum BuildLights
         {
